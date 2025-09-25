@@ -2,22 +2,32 @@ import './App.css'
 import { useState } from 'react'
 
 function App() {
+  const [count1, setCount1] = useState(0)
+  const [count2, setCount2] = useState(0)
   return (
     <div>
-      <Counter/>
-      <Counter/>
+      <Counter
+        count={count1}
+        OnIncrement={
+          ()=>setCount1(prev => prev+1)
+          }
+           />
+      <Counter
+        count={count2}
+        OnIncrement={
+          ()=>setCount2(prev => prev+1)
+          }
+           />
     </div>
   )
 }
 
-function Counter() {
-  const [count, setCount] = useState(0)
-
+function Counter({count, OnIncrement}) {
   return (
     <div>
       <h1>Counter: {count}</h1>
       <button 
-        onClick={ () => setCount( prev => prev + 1 ) }>
+        onClick={OnIncrement }>
           증가
       </button>
     </div>
